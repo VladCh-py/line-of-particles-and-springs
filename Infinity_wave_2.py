@@ -50,12 +50,7 @@ x0 = 0
 otkl=2
 x[otkl-1] =x[otkl-1]+ x0
 x_start[otkl-1] =x[otkl-1]-x0
-'''
-x[7] =x[7]+ x0
-x[15] =x[15]+ x0
-x[20] =x[20]+ x0
-x[40] =x[40]+ x0
-'''
+
 #Задаем условия вынужденных колебаний 1ого шарика
 if Mode == 1:
     A=0.4                        #Амлитуда
@@ -100,9 +95,7 @@ print('Количество шаров= '+str(n)+'\nМасса 1= '+str(m1)
 while t < t_max:
 
     if (t<t_max): x[0] = A*cos(-W*t)
-    #else :a[0] = -(k * (l_rest-abs(x[1] - x[0]))) / m
-    #a[0] = -(k * (l_rest-abs(x[1] - x[0]))) / m
-    
+
     for i in range(1, n-1):#считаем ускорение каждого шара
         if ((i%2)==1 or i==1):
             a[i] = -(k * (abs(x[i] - x[i-1]) - l_rest) - k * (abs(x[i+1] - x[i]) - l_rest)) / m2
@@ -146,13 +139,10 @@ while t < t_max:
         plt.legend(loc="upper right")
         plt.pause(dt_show)
         plt.draw()
-        plt.clf()
-
-        
+        plt.clf()        
     
     t += dt# движимся дальше во времени
     
-#['Ball '+str(n//2+1),'Ball '+str(n//2), 'Ball '+str(n//2-1), str(n), str(k), str(x0)])
 plt.plot(np.arange(len(positions_left)-1) * dt, positions_left[:-1], label=f'Шар {49} (m2={m2})')
 plt.plot(np.arange(len(positions_middle)-1) * dt, positions_middle[:-1], label=f'Шар {50} (m1={m1})')
 plt.plot(np.arange(len(positions_right)-1) * dt, positions_right[:-1], label=f'Шар {51} (m2={m2})')
@@ -163,3 +153,4 @@ plt.title('Смещение средних шаров')
 plt.legend()
 plt.grid(True)
 plt.show()
+
